@@ -60,7 +60,7 @@ function App() {
           <div className="flex items-center justify-center mb-2">
             <Globe2 className="text-indigo-600" size={32} />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900">Language Game</h1>
+          <h1 className="text-3xl font-bold text-gray-900">EchoLingo</h1>
           <p className="text-gray-600">Test your language recognition skills!</p>
         </header>
 

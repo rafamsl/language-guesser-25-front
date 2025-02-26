@@ -28,11 +28,12 @@ function App() {
         const emoji = score.score === 100 ? '🎯' : score.score === 70 ? '👌' : '❌';
         return emoji;
       }).join('') +
-      '\n\nPlay at: ' + https://splendid-salamander-7089cc.netlify.app/;
-    
-    navigator.clipboard.writeText(shareText);
-  };
+      '\n\nPlay at: https://splendid-salamander-7089cc.netlify.app/';
 
+    navigator.clipboard.writeText(shareText).then(() => {
+        alert("Text copied to clipboard!");
+    });
+};
   const allLanguagesSelected = samples.length > 0 && 
     samples.every(sample => guesses[sample.order]);
 

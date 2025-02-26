@@ -28,7 +28,7 @@ function App() {
         const emoji = score.score === 100 ? '🎯' : score.score === 70 ? '👌' : '❌';
         return emoji;
       }).join('') +
-      '\n\nPlay at: https://splendid-salamander-7089cc.netlify.app/';
+      '\n\nPlay at: ' + https://splendid-salamander-7089cc.netlify.app/;
     
     navigator.clipboard.writeText(shareText);
   };

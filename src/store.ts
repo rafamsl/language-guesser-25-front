@@ -43,32 +43,29 @@ export const useGameStore = create<GameState>((set, get) => ({
 
   startGame: async () => {
     set({ isLoading: true, error: null });
+    
     try {
-      const stored = loadGameFromStorage();
+      // Always fetch new samples when starting a game
+      const { data } = await axios.get(`${API_BASE_URL}/game/new`);
       
-      if (stored && !shouldFetchNewGame(stored)) {
-        set({
-          samples: stored.currentGame.samples,
-          gameStatus: stored.currentGame.hasPlayed ? 'results' : 'playing'
-        });
-      } else {
-        const { data } = await axios.get(`${API_BASE_URL}/game/new`);
-        const newGame: GameStorage = {
-          currentGame: {
-            samples: data.samples,
-            fetchDate: new Date().toISOString(),
-            hasPlayed: false
-          }
-        };
-        saveGameToStorage(newGame);
-        set({
+      // Store the new game
+      const newGame: GameStorage = {
+        currentGame: {
           samples: data.samples,
-          gameStatus: 'playing',
-          guesses: {},
-          scores: null,
-          totalScore: null
-        });
-      }
+          fetchDate: new Date().toISOString(),
+          hasPlayed: false
+        }
+      };
+      
+      saveGameToStorage(newGame);
+      
+      set({
+        samples: data.samples,
+        gameStatus: 'playing',
+        guesses: {},
+        scores: null,
+        totalScore: null
+      });
     } catch (error) {
       set({ error: 'Failed to start game. Please try again.' });
     } finally {

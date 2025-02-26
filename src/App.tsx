@@ -22,8 +22,7 @@ function App() {
   const handleShare = () => {
     if (!scores) return;
     
-    const shareText = `🌍 Language Game ${new Date().toLocaleDateString()}\n\n` +
-      `Score: ${totalScore}/500\n\n` +
+    const shareText = `🌍 I scored ${totalScore}/500 points on EchoLingo today! Can you beat my score?\n\n` +
       scores.map(score => {
         const emoji = score.score === 100 ? '🎯' : score.score === 70 ? '👌' : '❌';
         return emoji;
@@ -37,10 +36,10 @@ function App() {
 
   const shareToTwitter = () => {
     if (!scores) return;
-    const text = `🌍 EchoLingo: ${totalScore}/500 points! Can you beat my score?\n${scores.map(score => {
+    const text = `🌍 I scored ${totalScore}/500 points on EchoLingo today! Can you beat my score?\n\n${scores.map(score => {
       const emoji = score.score === 100 ? '🎯' : score.score === 70 ? '👌' : '❌';
       return emoji;
-    }).join('')}`;
+    }).join('\n\n')}`;
     const url = 'https://splendid-salamander-7089cc.netlify.app/';
     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
   };
@@ -52,10 +51,10 @@ function App() {
 
   const shareToWhatsApp = () => {
     if (!scores) return;
-    const text = `🌍 EchoLingo: ${totalScore}/500 points! ${scores.map(score => {
+    const text = `🌍 I scored ${totalScore}/500 points on EchoLingo today! Can you beat my score?\n\n${scores.map(score => {
       const emoji = score.score === 100 ? '🎯' : score.score === 70 ? '👌' : '❌';
       return emoji;
-    }).join('')} Play at: https://splendid-salamander-7089cc.netlify.app/`;
+    }).join('\n\n')} Play at: https://splendid-salamander-7089cc.netlify.app/`;
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
   };
 
